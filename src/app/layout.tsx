@@ -1,21 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "@/styles/globals.css";
-
-const SF_PRO = localFont({
-  src: [
-    {
-      path: "../font/sf-pro-display/SFPRODISPLAYMEDIUM.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../font/sf-pro-display/SFPRODISPLAYBOLD.otf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-});
 
 export const metadata: Metadata = {
   title: "Task-app",
@@ -29,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${SF_PRO.className} antialiased`}>{children}</body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
