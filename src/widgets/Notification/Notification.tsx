@@ -15,17 +15,23 @@ export function Widget({
   padding = " ",
   location = "",
 }: WidgetProps) {
-  const [show, setShow] = useState<boolean>(false);
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const error = searchParams.get("error");
-  const succes = searchParams.get("succes");
+  const searchParams = useSearchParams();
+
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [show, setShow] = useState<boolean>(false);
 
   useEffect(() => {
-    if (error || succes) {
+    const err = searchParams.get("error");
+    const suc = searchParams.get("succes");
+
+    if (err || suc) {
+      setError(err);
+      setSuccess(suc);
       setShow(true);
     }
-  }, [error, succes]);
+  }, [searchParams]);
 
   const handleClose = () => {
     setShow(false);
@@ -34,7 +40,6 @@ export function Widget({
     params.delete("error");
     params.delete("succes");
 
-    // Construct new URL without these query parameters
     const newParams = params.toString();
     const newUrl = `${window.location.pathname}${
       newParams ? `?${newParams}` : ""
@@ -53,7 +58,7 @@ export function Widget({
         <div>
           <p className={size}>
             {error}
-            {succes}
+            {success}
           </p>
         </div>
         <button
