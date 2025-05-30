@@ -11,7 +11,7 @@ export function Widget({ children }: WidgetProps) {
       <input
         type="text"
         placeholder="Filter"
-        className="ml-auto px-1 sm:px-2 sm:py-1 border rounded"
+        className="w-[20%] ml-auto px-1 sm:px-2 sm:py-1 border rounded"
       />
     </div>
   );
